@@ -1,0 +1,16 @@
+[
+  { "name": "Home", "id": "home", "icon": "oj-ux-ico-home" },
+  {
+    "name": "Live Chart",
+    "id": "livechart",
+    "icon": "oj-ux-ico-chart-line-v"
+  },
+  { "name": "Daily Chart", "id": "dailychart", "icon": "oj-ux-ico-chart-line" },
+  {
+    "name": "Weekly Chart",
+    "id": "weeklychart",
+    "icon": "oj-ux-ico-report-package"
+  },
+  { "name": "Gallery", "id": "gallery", "icon": "oj-ux-ico-library-image" },
+  { "name": "Support", "id": "support", "icon": "oj-ux-ico-chat-on" }
+]

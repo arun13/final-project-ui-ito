@@ -1,0 +1,59 @@
+/*
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        This is where any of your application specific styles should be included
+*/
+.demo-oracle-icon {
+    width:150px;
+    height:30px;
+    content:url("images/university-logo.png");
+    padding-right: 100px;
+}
+
+html:not([dir="rtl"]) .demo-oracle-icon {
+    padding-right:4px
+}
+
+html[dir="rtl"] .demo-oracle-icon {
+    padding-left:4px
+}
+
+.demo-oracle-icon:before {
+    display:inline
+}
+
+.demo-appheader-avatar {
+    width:24px;
+    height:24px
+}
+
+.demo-appheader-avatar:before {
+    content:url("images/avatar_24px.png")
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+    .demo-appheader-avatar:before {
+        content:url("images/avatar_24px_2x.png");
+        -webkit-transform:translate(-25%, -25%) scale(0.5);
+        transform:translate(-25%, -25%) scale(0.5)
+    }
+}
+
+.home-page{
+    background-image: url("../styles/images/watering-plant_2.jpg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    min-width: 70vw;
+    min-height: 50vh;
+
+}
+.image-card {
+    box-sizing: border-box;
+    width: 16rem;
+    min-height: 12rem;
+}
+
+.image-filmstrip {
+    height: 18rem;
+}
