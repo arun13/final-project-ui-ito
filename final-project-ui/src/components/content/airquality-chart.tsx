@@ -231,7 +231,11 @@ export class AirQualityChartComponent extends Component<ExtendGlobalProps<Props>
 
         return(
             <div>
-                <oj-chart
+                <div style="padding-left:40%;">
+                    <img src="../styles/images/watered_pump_on.png" style="width:50px;length:50px;"/>
+                    <span style="font-weight: bold;">Water Pump On</span>
+                </div>
+                    <oj-chart
                     id="lineChart"
                     type="line"
                     orientation="vertical"

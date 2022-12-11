@@ -45,6 +45,63 @@ export class AltitudeChartComponent extends Component<ExtendGlobalProps<Props>, 
         }
         return true;
     }
+///async function start
+    getTodayDate=()=>{
+        var today = new Date();
+        var dd = String(today. getDate()). padStart(2, '0');
+        var mm = String(today. getMonth() + 1). padStart(2, '0'); //January is 0!
+        var yyyy = today. getFullYear();
+        var today_string = dd + '/' + mm + '/' + yyyy;
+        return today_string;
+    }
+    getSensorDataAsync= async () => {
+        console.log("Checking...", this.props.dateString);
+        if(this.getTodayDate()==this.props.dateString) {
+            console.log("Starting Rest API call using Async Function to pull live data..", this.props.dateString)
+            fetch("https://93y9xyz2w2.execute-api.us-west-2.amazonaws.com/v3/evnplantmonitordataapi",
+                {
+                    mode: "cors",
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json;charset=UTF-8'
+                    },
+                    body: JSON.stringify({
+                        DATE: this.props.dateString
+                    })
+                })
+                .then((response) => response.json())
+                .then((data) => {
+
+                    let graphDataArray = new Array<SensorData>();
+                    graphDataArray = data["body"];
+                    console.log(graphDataArray);
+                    const humidityData = [];
+                    graphDataArray.forEach(d => {
+                            // console.log(d);
+                            humidityData.push({
+                                id: d.READING_ID,
+                                series: "Air Quality",
+                                isPumpOn: d.IS_PUMP_ON,
+                                time: d.DATE_TIMESTAMP,
+                                value: d.ENV_SENSOR_GAS,
+                            });
+                        }
+                    )
+                    // console.log(humidityData);
+                    this.setState({
+                        dataProvider: new ArrayDataProvider(humidityData, {
+                            keyAttributes: ["series", "time"],
+                        })
+                    })
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                })
+        }
+    }
+
+///async function end
 
     getSensorData=(dateString) => {
 
@@ -113,6 +170,10 @@ export class AltitudeChartComponent extends Component<ExtendGlobalProps<Props>, 
         const {chartVariable} = useContext(NavigationContext);
         const [chart,setChart] = chartVariable;
 
+        if(chart=="livechart") {
+            setInterval(this.getSensorDataAsync, 30000);
+        }
+        console.log("Chart ->"+chart);
 
         const templateNavigation = (item) =>{
             let groupIdArray = new Array<string>();
@@ -154,6 +215,10 @@ export class AltitudeChartComponent extends Component<ExtendGlobalProps<Props>, 
 
         return(
             <div>
+                <div style="padding-left:40%;">
+                    <img src="../styles/images/watered_pump_on.png" style="width:50px;length:50px;"/>
+                    <span style="font-weight: bold;">Water Pump On</span>
+                </div>
                 <oj-chart
                     id="lineChart"
                     type="line"

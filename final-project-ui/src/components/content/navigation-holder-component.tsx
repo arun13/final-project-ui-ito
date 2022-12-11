@@ -185,7 +185,7 @@ export class NavigationHolderComponent extends Component<ExtendGlobalProps<Props
                 console.log(this.getDate());
                 return (
                <div>
-                <div style="padding-left:25%;padding-bottom:3%;padding-top:3%;">
+                <div style="padding-left:25%;padding-bottom:1%;padding-top:3%;">
                     <oj-button id="air_quality" onClick={(event)=>this.selectButton(event,"airquality")}>
                         Air Quality
                     </oj-button>
