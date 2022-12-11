@@ -296,7 +296,7 @@ export class NavigationHolderComponent extends Component<ExtendGlobalProps<Props
                 break;
             default:
                 return (
-                    <div style="margin-right: 20%;margin-left: 5% ;">
+                    <div>
                     <HomePageComponent/>
                     </div>
                 );

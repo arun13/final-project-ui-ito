@@ -41,11 +41,11 @@ html[dir="rtl"] .demo-oracle-icon {
 }
 
 .home-page{
-    background-image: url("../styles/images/watering-plant_2.jpg");
+    background-image: url("../styles/images/HomePagePrimary.jpg");
     background-position: 0 0;
     background-repeat: no-repeat;
     min-width: 70vw;
-    min-height: 50vh;
+    min-height: 70vh;
 
 }
 .image-card {
@@ -56,4 +56,7 @@ html[dir="rtl"] .demo-oracle-icon {
 
 .image-filmstrip {
     height: 18rem;
+}
+.filmstrip-action-cards{
+
 }

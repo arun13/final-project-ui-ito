@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "12/10/2022",
+    "title": "Plant Growth",
+    "image": "../styles/images/plants/plant_image1.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "12/09/2022",
+    "title": "Plant Growth",
+    "image": "../styles/images/plants/plant_image2.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "12/08/2022",
+    "title": "Plant Growth",
+    "image": "../styles/images/plants/plant_image3.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "12/07/2022",
+    "title": "Plant Growth",
+    "image": "../styles/images/plants/plant_image4.jpeg"
+  },
+  {
+    "id": 5,
+    "name": "12/06/2022",
+    "title": "Plant Growth",
+    "image": "../styles/images/plants/plant_image5.jpeg"
+  }
+]
