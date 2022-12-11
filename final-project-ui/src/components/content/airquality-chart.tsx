@@ -30,7 +30,8 @@ type Props = {
 type State ={
    /* graphDataArrayProvider : ArrayDataProvider<SensorData["READING_ID"], SensorData>;
     graphDataArray: Array<SensorData>;*/
-    dataProvider: ArrayDataProvider<any, any>
+    dataProvider: ArrayDataProvider<any, any>;
+    dateStringState: string;
 }
 
 @customElement('oj-airquality-chart-component')
@@ -47,10 +48,18 @@ export class AirQualityChartComponent extends Component<ExtendGlobalProps<Props>
         return true;
     }
 ///async function start
-
+    getTodayDate=()=>{
+        var today = new Date();
+        var dd = String(today. getDate()). padStart(2, '0');
+        var mm = String(today. getMonth() + 1). padStart(2, '0'); //January is 0!
+        var yyyy = today. getFullYear();
+        var today_string = dd + '/' + mm + '/' + yyyy;
+        return today_string;
+    }
     getSensorDataAsync= async () => {
-
-        console.log("Starting Rest API call using Async Function to pull live data..",this.props.dateString)
+    console.log("Checking...", this.props.dateString);
+    if(this.getTodayDate()==this.props.dateString) {
+        console.log("Starting Rest API call using Async Function to pull live data..", this.props.dateString)
         fetch("https://93y9xyz2w2.execute-api.us-west-2.amazonaws.com/v3/evnplantmonitordataapi",
             {
                 mode: "cors",
@@ -63,22 +72,21 @@ export class AirQualityChartComponent extends Component<ExtendGlobalProps<Props>
                     DATE: this.props.dateString
                 })
             })
-            .then((response)=>response.json())
-            .then((data)=>{
+            .then((response) => response.json())
+            .then((data) => {
 
                 let graphDataArray = new Array<SensorData>();
                 graphDataArray = data["body"];
                 console.log(graphDataArray);
                 const humidityData = [];
-                graphDataArray.forEach(d=>
-                    {
+                graphDataArray.forEach(d => {
                         // console.log(d);
                         humidityData.push({
                             id: d.READING_ID,
                             series: "Air Quality",
                             isPumpOn: d.IS_PUMP_ON,
                             time: d.DATE_TIMESTAMP,
-                            value:d.ENV_SENSOR_GAS,
+                            value: d.ENV_SENSOR_GAS,
                         });
                     }
                 )
@@ -89,9 +97,10 @@ export class AirQualityChartComponent extends Component<ExtendGlobalProps<Props>
                     })
                 })
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log(err.message);
             })
+     }
     }
 
 ///async function end
@@ -164,19 +173,23 @@ export class AirQualityChartComponent extends Component<ExtendGlobalProps<Props>
     render(props:Readonly<Props>,state:Readonly<State>): ComponentChild{
         const {chartVariable,intervalVariable} = useContext(NavigationContext);
         const [chart,setChart] = chartVariable;
-        const [interval,setInterval] = intervalVariable;
+        const [intervalTask,setIntervalTask] = intervalVariable;
 
-/*        let intervalHandle=null
+ /*       let intervalHandle=null
 
         if(chart=="livechart") {
-            intervalHandle = setInterval(this.getSensorDataAsync, 3000);
+            intervalHandle = setInterval(this.getSensorDataAsync, 60000);
+        }*/
+        if(chart=="livechart") {
+            setInterval(this.getSensorDataAsync, 30000);
         }
-
         console.log("Chart ->"+chart);
+/*
         if(intervalHandle!=null && chart!="livechart") {
             console.log("inside if loop...");
             clearInterval(intervalHandle);
-        }*/
+        }
+*/
 
         const templateNavigation = (item) =>{
             let groupIdArray = new Array<string>();

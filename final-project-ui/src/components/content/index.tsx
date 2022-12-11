@@ -18,13 +18,13 @@ export class Content extends Component<Props, State>{
 
   render() {
     const [chart, setChart] = useState("home");
-    const [interval, setInterval] = useState("");
+    const [intervalTask, setIntervalTask] = useState("");
 
     return (
         <div class="oj-web-applayout-content">
           <div id="content" class="oj-offcanvas-outer-wrapper oj-sm-flex-direction-column oj-flex oj-sm-flex-wrap-nowrap">
             <div id="contentWrapper" class="oj-flex oj-sm-flex-wrap-nowrap oj-flex-item">
-              <NavigationContext.Provider value={{chartVariable: [chart,setChart],intervalVariable: [interval,setInterval]}}>
+              <NavigationContext.Provider value={{chartVariable: [chart,setChart],intervalVariable: [intervalTask,setIntervalTask]}}>
                 <div id="navigationlistcontainer" class="oj-contrast-marker oj-bg-neutral-170 oj-color-invert">
                   <NavigationListComponent/>
                 </div>
