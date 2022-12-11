@@ -218,6 +218,7 @@ export class NavigationHolderComponent extends Component<ExtendGlobalProps<Props
                         {this.state.isSoilMoistureButton &&  <SoilMoistureChartComponent dateString={this.getDate()}/> }
                     </div>
                 </div>
+
                         );
                 break;
             case "dailychart":
@@ -278,7 +279,7 @@ export class NavigationHolderComponent extends Component<ExtendGlobalProps<Props
                 break;
             default:
                 return (
-                    <div style="margin-top: 25%; margin-right: 20%;margin-left: 5% ; margin-bottom: 5%;">
+                    <div style="margin-right: 20%;margin-left: 5% ;">
                     <HomePageComponent/>
                     </div>
                 );

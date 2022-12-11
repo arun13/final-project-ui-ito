@@ -166,7 +166,7 @@ export class AirQualityChartComponent extends Component<ExtendGlobalProps<Props>
         const [chart,setChart] = chartVariable;
         const [interval,setInterval] = intervalVariable;
 
-        let intervalHandle=null
+/*        let intervalHandle=null
 
         if(chart=="livechart") {
             intervalHandle = setInterval(this.getSensorDataAsync, 3000);
@@ -176,7 +176,7 @@ export class AirQualityChartComponent extends Component<ExtendGlobalProps<Props>
         if(intervalHandle!=null && chart!="livechart") {
             console.log("inside if loop...");
             clearInterval(intervalHandle);
-        }
+        }*/
 
         const templateNavigation = (item) =>{
             let groupIdArray = new Array<string>();
