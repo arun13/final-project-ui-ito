@@ -22,7 +22,7 @@ export class HomePageComponent extends Component<ExtendGlobalProps<Props>, State
                </div>
                <div style="margin-top: 1%; margin-right: 23%;margin-left: 9%;font-weight: bold;">
                    <p>This is an IoT powered intelligent water saving irrigation control, nutrition and soil management
-                  Its a platform where you can monitor all parameters which are key to successful farming</p>
+                  Its a platform where you can monitor all parameters which are key to successful farming.</p>
                 </div>
                 <div class="oj-flex oj-flex-item home-page" style="margin-top:2%; margin-right: 5%;margin-left: 25%;;">
 
