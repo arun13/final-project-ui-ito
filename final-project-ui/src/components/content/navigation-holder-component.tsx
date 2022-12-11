@@ -43,13 +43,13 @@ export class NavigationHolderComponent extends Component<ExtendGlobalProps<Props
     constructor() {
         super();
         this.setState({
-            isAirQualityButton: true,
+            isAirQualityButton: false,
             isHumidityButton: false,
             isTemperatureButton: false,
             isAltitudeButton: false,
             isPressureButton: false,
             isSoilTemperatureButton: false,
-            isSoilMoistureButton: false,
+            isSoilMoistureButton: true,
             isDateSelected: false
         })
     }

@@ -73,18 +73,21 @@ export class SoilMoistureChartComponent extends Component<ExtendGlobalProps<Prop
                 .then((response) => response.json())
                 .then((data) => {
 
-                    let graphDataArray = new Array<SensorData>();
-                    graphDataArray = data["body"];
-                    console.log(graphDataArray);
+                   // let graphDataArray = new Array<SensorData>();
+                    let graphDataArray:Array<SensorData> = data["body"];
+                    graphDataArray.sort((a, b) => a.READING_ID < b.READING_ID ? -1 : a.READING_ID > b.READING_ID ? 1 : 0)
+                    console.log("Sorted"+graphDataArray);
                     const humidityData = [];
                     graphDataArray.forEach(d => {
                             // console.log(d);
-                            humidityData.push({
-                                id: d.READING_ID,
-                                series: "Air Quality",
-                                isPumpOn: d.IS_PUMP_ON,
-                                time: d.DATE_TIMESTAMP,
-                                value: d.ENV_SENSOR_GAS,
+                        var moisture_percent = (parseInt(d.SOIL_SENSOR_MOIST)/1000)*100;
+                        // console.log(d);
+                        humidityData.push({
+                            id: d.READING_ID,
+                            series: "Soil Moisture",
+                            time: d.DATE_TIMESTAMP,
+                            isPumpOn: d.IS_PUMP_ON,
+                            value:moisture_percent
                             });
                         }
                     )
@@ -120,19 +123,20 @@ export class SoilMoistureChartComponent extends Component<ExtendGlobalProps<Prop
             .then((response)=>response.json())
             .then((data)=>{
 
-                let graphDataArray = new Array<SensorData>();
-                graphDataArray = data["body"];
-                console.log(graphDataArray);
+                let graphDataArray:Array<SensorData> = data["body"];
+                graphDataArray.sort((a, b) => a.READING_ID < b.READING_ID ? -1 : a.READING_ID > b.READING_ID ? 1 : 0)
+                console.log("Sorted"+graphDataArray);
                 const humidityData = [];
                 graphDataArray.forEach(d=>
                     {
+                        var moisture_percent = (parseInt(d.SOIL_SENSOR_MOIST)/1000)*100;
                        // console.log(d);
                         humidityData.push({
                             id: d.READING_ID,
                             series: "Soil Moisture",
                             time: d.DATE_TIMESTAMP,
                             isPumpOn: d.IS_PUMP_ON,
-                            value:d.SOIL_SENSOR_MOIST,
+                            value:moisture_percent
                         });
                     }
                 )

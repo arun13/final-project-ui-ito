@@ -73,18 +73,18 @@ export class AltitudeChartComponent extends Component<ExtendGlobalProps<Props>, 
                 .then((response) => response.json())
                 .then((data) => {
 
-                    let graphDataArray = new Array<SensorData>();
-                    graphDataArray = data["body"];
-                    console.log(graphDataArray);
+                    let graphDataArray:Array<SensorData> = data["body"];
+                    graphDataArray.sort((a, b) => a.READING_ID < b.READING_ID ? -1 : a.READING_ID > b.READING_ID ? 1 : 0)
+                    console.log("Sorted"+graphDataArray);
                     const humidityData = [];
                     graphDataArray.forEach(d => {
                             // console.log(d);
                             humidityData.push({
                                 id: d.READING_ID,
-                                series: "Air Quality",
-                                isPumpOn: d.IS_PUMP_ON,
+                                series: "Altitude",
                                 time: d.DATE_TIMESTAMP,
-                                value: d.ENV_SENSOR_GAS,
+                                isPumpOn: d.IS_PUMP_ON,
+                                value:d.ENV_SENSOR_ALTITUDE,
                             });
                         }
                     )
@@ -121,9 +121,9 @@ export class AltitudeChartComponent extends Component<ExtendGlobalProps<Props>, 
             .then((response)=>response.json())
             .then((data)=>{
 
-                let graphDataArray = new Array<SensorData>();
-                graphDataArray = data["body"];
-                console.log(graphDataArray);
+                let graphDataArray:Array<SensorData> = data["body"];
+                graphDataArray.sort((a, b) => a.READING_ID < b.READING_ID ? -1 : a.READING_ID > b.READING_ID ? 1 : 0)
+                console.log("Sorted"+graphDataArray);
                 const humidityData = [];
                 graphDataArray.forEach(d=>
                     {
@@ -180,7 +180,7 @@ export class AltitudeChartComponent extends Component<ExtendGlobalProps<Props>, 
             groupIdArray.push(item.data.time);
             console.log(item)
             console.log(groupIdArray);
-            if(item.data.isPumpOn){
+/*            if(item.data.isPumpOn){
                 return(
                     <oj-chart-item
                         value={item.data.value}
@@ -193,10 +193,10 @@ export class AltitudeChartComponent extends Component<ExtendGlobalProps<Props>, 
                         markerShape="square"
                         markerSize={30}>
                     </oj-chart-item>
-                    /*            <oj-chart-series
-                                </oj-chart-series>*/
+                    /!*            <oj-chart-series
+                                </oj-chart-series>*!/
                 );}
-            else{
+            else{*/
                 return(
                     <oj-chart-item
                         value={item.data.value}
@@ -205,7 +205,7 @@ export class AltitudeChartComponent extends Component<ExtendGlobalProps<Props>, 
                         markerShape="square"
                         seriesId={item.data.series}>
                     </oj-chart-item>);
-            }
+           // }
         }
 
         useEffect(()=>{
@@ -215,10 +215,10 @@ export class AltitudeChartComponent extends Component<ExtendGlobalProps<Props>, 
 
         return(
             <div>
-                <div style="padding-left:40%;">
+{/*                <div style="padding-left:40%;">
                     <img src="../styles/images/watered_pump_on.png" style="width:50px;length:50px;"/>
                     <span style="font-weight: bold;">Water Pump On</span>
-                </div>
+                </div>*/}
                 <oj-chart
                     id="lineChart"
                     type="line"
