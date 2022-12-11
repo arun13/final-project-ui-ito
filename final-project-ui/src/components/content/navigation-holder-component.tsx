@@ -15,6 +15,8 @@ import { ojDatePicker } from 'ojs/ojdatetimepicker';
 import 'ojs/ojdatetimepicker';
 import 'ojs/ojlabel';
 import 'ojs/ojformlayout';
+import {SupportComponent} from "./support";
+import {GalleryComponent} from "./gallery";
 
 type Props = {
 
@@ -274,6 +276,21 @@ export class NavigationHolderComponent extends Component<ExtendGlobalProps<Props
                             </div>
                           </div>
                         }
+                    </div>
+                );
+                break;
+            case "support":
+                return (
+                    <div style="margin-right: 20%;margin-left: 5% ;">
+                        <SupportComponent/>
+                    </div>
+                );
+                break;
+
+            case "gallery":
+                return (
+                    <div style="margin-right: 20%;margin-left: 5% ;">
+                        <GalleryComponent/>
                     </div>
                 );
                 break;

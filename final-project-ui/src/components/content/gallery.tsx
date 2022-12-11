@@ -35,7 +35,7 @@ export class GalleryComponent extends Component<ExtendGlobalProps<Props>, State>
 
     render(props:Readonly<Props>,state:Readonly<State>): ComponentChild{
         return(
-            <div class="oj-flex oj-sm-flex-direction-column oj-sm-align-items-center home-page">
+            <div class="oj-flex oj-sm-flex-direction-column oj-sm-align-items-center">
                 <div class="oj-flex oj-flex-item">
                     <div id="filmstrip-action-cards-example">
                         <div className="oj-panel oj-sm-margin-4x">

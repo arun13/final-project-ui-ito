@@ -224,6 +224,8 @@ export class EnvironmentPressureChartComponent extends Component<ExtendGlobalPro
                     data={this.state.dataProvider}
                     animation-on-display="auto"
                     animation-on-data-change="auto"
+                    yAxis={{"title":"hPa"}}
+                    xAxis={{"title":"Time Stamps"}}
                     styleDefaults={{"lineType":"centeredStepped","markerDisplayed":"on"}}>
                     <template slot="itemTemplate" render={templateNavigation}/>
                 </oj-chart>
